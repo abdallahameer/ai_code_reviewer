@@ -31,11 +31,13 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "No access token" }, { status: 400 });
   }
 
-  const response = NextResponse.redirect("http://localhost:3000/dashboard");
+  const response = NextResponse.redirect(
+    `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
+  );
 
   response.cookies.set("github_token", accessToken, {
     httpOnly: true,
-    secure: false, // خليها true في production
+    secure: process.env.NODE_ENV === "production",
     path: "/",
   });
 
