@@ -3,7 +3,7 @@ import { RefObject } from "react";
 interface ReviewOutputProps {
   review: string;
   loading: boolean;
-  reviewEndRef: RefObject<HTMLDivElement>;
+  reviewEndRef: RefObject<HTMLDivElement | null>;
 }
 
 export default function ReviewOutput({

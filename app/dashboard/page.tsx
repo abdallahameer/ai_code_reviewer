@@ -88,7 +88,6 @@ export default function Dashboard() {
         {/* Repo section */}
         <RepoSection
           reboList={repoList}
-          fullName={fullName}
           mainReviewData={mainReviewData}
           prList={prList}
           setValue={setValue}
