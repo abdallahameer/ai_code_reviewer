@@ -1,18 +1,19 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
-
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
+export default defineConfig([
+  {
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    ignores: [".next/**", "node_modules/**"], // 🔹 استثناء ملفات build و node_modules
+    plugins: { js },
+    extends: ["js/recommended"],
+    languageOptions: { globals: globals.browser },
+    rules: {
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-no-bind": "warn",
+      "react/prop-types": "off",
+    },
+    settings: {
+      react: { version: "detect" },
+    },
+  },
+  tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
 ]);
-
-export default eslintConfig;
