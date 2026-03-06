@@ -24,7 +24,6 @@ export async function GET(req: NextRequest) {
   );
 
   const data = await tokenResponse.json();
-
   const accessToken = data.access_token;
 
   if (!accessToken) {
@@ -39,6 +38,7 @@ export async function GET(req: NextRequest) {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     path: "/",
+    sameSite: "lax", // ✅ fixes cookie on Vercel
   });
 
   return response;
