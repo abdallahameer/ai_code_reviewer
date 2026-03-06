@@ -4,7 +4,7 @@ interface StatusBarProps {
 }
 
 export default function StatusBar({ fullName, prList }: StatusBarProps) {
-  const hasPRs = prList?.pulls?.length > 0;
+  const hasPRs = (prList?.pulls?.length ?? 0) > 0;
 
   return (
     <div className="font-mono-tech bg-black border border-solid border-[#364153] flex items-center gap-2 px-3.5 py-2.5 rounded-lg mb-6 text-xs">
@@ -27,7 +27,7 @@ export default function StatusBar({ fullName, prList }: StatusBarProps) {
             border: "1px solid rgba(56,189,248,0.2)",
           }}
         >
-          {prList.pulls.length} PR{prList.pulls.length !== 1 ? "s" : ""} open
+          {prList?.pulls.length} PR{prList?.pulls.length !== 1 ? "s" : ""} open
         </span>
       )}
     </div>
