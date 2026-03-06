@@ -60,6 +60,7 @@ export async function GET(
 
     // فلترة الملفات
     const allowedExtensions = [".ts", ".tsx", ".js", ".jsx"];
+    const ignoredFiles = ["package.json", "package-lock.json"];
     const ignoredFolders = ["node_modules", "dist", "build", ".next", ".git"];
 
     const filteredFiles = treeData.tree.filter((item: any) => {
@@ -70,6 +71,12 @@ export async function GET(
       );
       if (isIgnored) return false;
 
+      // ✅ ignore specific files by name
+      const isIgnoredFile = ignoredFiles.some((file) =>
+        item.path.endsWith(file),
+      );
+      if (isIgnoredFile) return false;
+
       const hasValidExtension = allowedExtensions.some((ext) =>
         item.path.endsWith(ext),
       );
@@ -77,8 +84,6 @@ export async function GET(
       return hasValidExtension;
     });
 
-    // نجيب أول 5 ملفات فقط
-    // const filesToFetch = filteredFiles.slice(0, 1);
     const filesWithContent = [];
 
     for (const file of filteredFiles) {
