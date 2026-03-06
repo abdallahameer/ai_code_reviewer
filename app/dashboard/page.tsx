@@ -72,8 +72,6 @@ export default function Dashboard() {
 
   if (isLoading || !isAuthenticated?.authenticated) return null;
 
-  const hasPRs = prList?.pulls?.length > 0;
-
   return (
     <div className="font-syne min-h-screen w-full flex flex-col items-center px-6 py-12 pb-20 text-slate-200">
       <DashboardHeader />

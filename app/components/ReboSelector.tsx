@@ -17,18 +17,14 @@ interface Repository {
 type FormValues = {
   full_name: string | null;
   number_of_prs: string | null;
+  prName: string | null;
 };
 
 type Props = {
   label: string;
   setValue: UseFormSetValue<FormValues>;
-  reboList: Repository;
+  reboList: Repository | undefined;
   hasPRs: boolean;
-  formValues: {
-    full_name: string | null;
-    number_of_prs: string | null;
-    prName: string | null;
-  };
 };
 
 export default function ReboSelector({
@@ -36,7 +32,6 @@ export default function ReboSelector({
   setValue,
   reboList,
   hasPRs,
-  formValues,
 }: Props) {
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [selectedRebo, setSelectedRebo] = useState<Repository | null>(null);

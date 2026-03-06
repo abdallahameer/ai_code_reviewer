@@ -21,7 +21,7 @@ type FormValues = {
 type Props = {
   label: string;
   setValue: UseFormSetValue<FormValues>;
-  prList: PullRequests;
+  prList: PullRequests | undefined;
 };
 
 export default function RepoPr({ label, setValue, prList }: Props) {

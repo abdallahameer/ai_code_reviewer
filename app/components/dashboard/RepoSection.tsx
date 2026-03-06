@@ -3,12 +3,13 @@ import ReboSelector from "../ReboSelector";
 import { UseFormSetValue } from "react-hook-form";
 
 interface RepoSectionProps {
-  reboList: Array<any> | undefined;
+  reboList: { repos: any[] } | undefined;
   mainReviewData: { branch?: string; total_files?: number } | undefined;
   prList: { pulls: Array<any> } | undefined;
   setValue: UseFormSetValue<{
     full_name: string | null;
     number_of_prs: string | null;
+    prName: string | null;
   }>;
   formValues: {
     full_name: string | null;
@@ -24,7 +25,7 @@ export default function RepoSection({
   setValue,
   formValues,
 }: RepoSectionProps) {
-  const hasPRs = prList?.pulls?.length > 0;
+  const hasPRs = (prList?.pulls?.length ?? 0) > 0;
 
   return (
     <>
